@@ -132,5 +132,10 @@ jobs:
         run: snyk fix
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Run gitleaks for secrets scanning
+          uses: zricethezav/gitleaks-action@v1
 
 #check snyk and proceed with Docker, FIX YOUR ENVIRONMENT FOR VIM AND TMUX, MAKE IT WORK !
