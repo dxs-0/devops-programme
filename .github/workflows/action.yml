@@ -137,7 +137,7 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@master
-   - name: 'Yamllint'
+    name: 'Yamllint'
     uses: karancode/yamllint-github-action@master
     with:
       yamllint_strict: false
