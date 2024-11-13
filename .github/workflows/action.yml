@@ -128,7 +128,7 @@ jobs:
             --severity-threshold=high
             --skip-unresolved
       - name: fix vulnerabilities with snyk
-        run: snyk fix
+        run: snyk fix --file=requirements.txt
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   yamllint:
