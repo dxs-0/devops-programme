@@ -121,6 +121,10 @@ jobs:
           pip install -r requirements.txt    
       - name: Install Snyk 
         run: npm install -g snyk
+      - name: fix vulnerabilities with snyk
+        run: snyk fix --file=requirements.txt
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}        
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/python-3.8@master
         env:
@@ -129,10 +133,7 @@ jobs:
           args: > 
             --severity-threshold=high
             --skip-unresolved
-      - name: fix vulnerabilities with snyk
-        run: snyk test --file=requirements.txt --json | jq '.' 
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
   yamllint:
     runs-on: ubuntu-latest
     steps:
