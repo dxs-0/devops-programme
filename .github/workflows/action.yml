@@ -159,11 +159,11 @@ jobs:
         with:
           context: .
           push: false
-          tags: ${{ secrets.DOCKER_USERNAME }}/ci-excercise:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/ci:${{ github.sha }}
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
         with:
-          image-ref: '${{ secrets.DOCKER_USERNAME }}/ci-excercise:${{ github.sha }}'
+          image-ref: '${{ secrets.DOCKER_USERNAME }}/ci:${{ github.sha }}' 
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
@@ -184,4 +184,4 @@ jobs:
         run: docker images
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/ci-excercise:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/ci:${{ github.sha }}
