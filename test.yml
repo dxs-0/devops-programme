@@ -2,10 +2,12 @@
 - name: Build, Push and Run Docker Image for Python Application
   hosts: localhost
   vars:
-    image_name: "dxs01/python-app"  # Change this to your Docker Hub username and app name
+    image_name: "dxs01/python-app"  
+    # Change this to your Docker Hub username and app name
     image_tag: "v0.2"
     listen_port: 5000
-    docker_socket: "unix://{{ ansible_env.HOME }}/.docker/run/docker.sock"  # Change path if using Rancher Desktop
+    docker_socket: "unix://{{ ansible_env.HOME }}/.docker/run/docker.sock"  
+    # Change path if using Rancher Desktop
 
   tasks:
     - name: Ensure Docker is installed
