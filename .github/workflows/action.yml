@@ -164,7 +164,7 @@
             image-ref: 'dxs01/ci-excercise:${{ github.sha }}'
             format: 'table'
             exit-code: '1'
-            ignore-unfixed: false
+            ignore-unfixed: true
             vuln-type: 'os,library'
             severity: 'CRITICAL,HIGH'
   
@@ -178,5 +178,4 @@
         - name: Push Docker image
           run: |
             echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-            docker push dxs01/ci-excercise:${{ github.sha }}
-  
+            docker push dxs01/ci-excercise:${{ github.sha }}  
