@@ -158,11 +158,11 @@
           uses: actions/checkout@v4
         - name: Build an image from Dockerfile
           run: |
-            docker build -t dxs01/ci-excercise:${{ github.sha }} .
+            docker build -t dxs01/ci-excercise:${{ github.event.pull_request.head.sha || github.sha }} .
         - name: Run Trivy vulnerability scanner
           uses: aquasecurity/trivy-action@0.28.0
           with:
-            image-ref: 'dxs01/ci-excercise:${{ github.sha }}'
+            image-ref: 'dxs01/ci-excercise:${{ github.event.pull_request.head.sha || github.sha }}'
             format: 'table'
             exit-code: '1'
             ignore-unfixed: true
@@ -181,5 +181,5 @@
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Push Docker image
         run: |
-            docker push dxs01/ci-excercise:${{ github.sha }}
+            docker push dxs01/ci-excercise:${{ github.event.pull_request.head.sha || github.sha }}
   # I hate these stupid errors
