@@ -148,7 +148,7 @@ jobs:
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  build_docker:
+  buildNrun_docker:
     runs-on: ubuntu-latest
     needs: [run-unittests, gitLeaks, sonarcloud, snyk]
     steps:
@@ -160,6 +160,18 @@ jobs:
           context: .
           push: false
           tags: ${{ secrets.DOCKER_USERNAME }}/ci:${{ github.sha }}
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+            # list of Docker images to use as base name for tags
+          images: |
+            ${{ secrets.DOCKER_USERNAME }}/ci          
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=sha
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
         with:
