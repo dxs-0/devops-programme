@@ -4,7 +4,7 @@ metadata:
   name: python-flask-hello-world
 spec:
   selector:
-    app.kubernetes.io/name: python-flask
+    app: python-flask
   ports:
     - protocol: TCP
       port: 80
