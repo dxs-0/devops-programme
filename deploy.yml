@@ -20,4 +20,3 @@ spec:
           image: dxs01/ci:sha-3cbbebd
           ports:
             - containerPort: 5000
-
