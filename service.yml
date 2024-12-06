@@ -7,6 +7,7 @@ spec:
   selector:
     app: python-flask
   ports:
-    - protocol: TCP
-      port: 5000
+    - name: http-flask
+      protocol: TCP
+      port: 80
       targetPort: 5000
